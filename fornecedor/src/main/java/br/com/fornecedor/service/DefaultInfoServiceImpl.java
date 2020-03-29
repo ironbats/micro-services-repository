@@ -44,14 +44,23 @@ public class DefaultInfoServiceImpl implements InfoFornecedorService {
 
 
         Produto produto = new Produto();
-        produto.setCodigoProduto("123");
-        produto.setCorProduto("teste");
+        produto.setCodigoProduto("codigo1");
+        produto.setCorProduto("azul");
         produto.setDescricaoProduto("produto teste");
         produto.setQuantidade(12);
 
-        produtoRepository.save(produto);
 
-        //pedidoRepository.save(pedido);
+        Produto produto2 = new Produto();
+        produto2.setCodigoProduto("codigo2");
+        produto2.setCorProduto("rosa");
+        produto2.setDescricaoProduto("produto teste 2");
+        produto2.setQuantidade(44);
+
+
+        pedido.setProduto(Arrays.asList(produto,produto2));
+        produtoRepository.save(produto);
+        produtoRepository.save(produto2);
+        pedidoRepository.save(pedido);
 
     }
 }
