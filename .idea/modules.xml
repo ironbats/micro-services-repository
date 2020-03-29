@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring-configuration/.mvn/.mvn.iml" filepath="$PROJECT_DIR$/spring-configuration/.mvn/.mvn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fornecedor/.mvn/.mvn1.iml" filepath="$PROJECT_DIR$/fornecedor/.mvn/.mvn1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loja/.mvn/.mvn2.iml" filepath="$PROJECT_DIR$/loja/.mvn/.mvn2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/discover-server/.mvn/.mvn3.iml" filepath="$PROJECT_DIR$/discover-server/.mvn/.mvn3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-configuration/src/main/main.iml" filepath="$PROJECT_DIR$/spring-configuration/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fornecedor/src/main/main1.iml" filepath="$PROJECT_DIR$/fornecedor/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loja/src/main/main2.iml" filepath="$PROJECT_DIR$/loja/src/main/main2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/discover-server/src/main/main3.iml" filepath="$PROJECT_DIR$/discover-server/src/main/main3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-configuration/src/test/test.iml" filepath="$PROJECT_DIR$/spring-configuration/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fornecedor/src/test/test1.iml" filepath="$PROJECT_DIR$/fornecedor/src/test/test1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/discover-server/src/test/test2.iml" filepath="$PROJECT_DIR$/discover-server/src/test/test2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loja/src/test/test3.iml" filepath="$PROJECT_DIR$/loja/src/test/test3.iml" />
+    </modules>
+  </component>
+</project>
