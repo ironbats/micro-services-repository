@@ -25,6 +25,7 @@ mvn spring-boot:run  -Dspring-boot.run.arguments=--server.port=8090
 # Spring tecnologias
 * Spring Tecnologias 
   - Spring cloud
+  - Spring cloud configuration
   - Lombok
   - Sleuth
   - Spring data JPA/Hibernate
