@@ -1,9 +1,8 @@
 package br.com.fornecedor.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class InfoFornecedor {
@@ -17,6 +16,18 @@ public class InfoFornecedor {
     private Integer numero;
     private String estado;
 
+    //um fornecedor para muitos pedidos
+    //ou seja um fornecedor pode ter muitos pedidos ou fazer muitos pedidos
+    @OneToMany(targetEntity = Pedido.class,mappedBy = "infoFornecedor")
+    private Set<Pedido> pedido  = new HashSet<>();
+
+    public void setPedido(Set<Pedido> pedido) {
+        this.pedido = pedido;
+    }
+
+    public Set<Pedido> getPedido() {
+        return pedido;
+    }
 
     public void setId(Long id) {
         this.id = id;

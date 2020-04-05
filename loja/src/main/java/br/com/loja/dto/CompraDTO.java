@@ -6,7 +6,16 @@ public class CompraDTO {
 
     private List<ItemCompra> itemCompras;
     private Endereco endereco;
+    private ResponseStatus responseStatus;
 
+
+    public void setResponseStatus(ResponseStatus responseStatus) {
+        this.responseStatus = responseStatus;
+    }
+
+    public ResponseStatus getResponseStatus() {
+        return responseStatus;
+    }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;

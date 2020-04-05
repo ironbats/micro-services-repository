@@ -1,40 +1,55 @@
 package br.com.loja.service;
 
 import br.com.loja.dto.CompraDTO;
-import br.com.loja.dto.InfoFornecedorDTO;
+import br.com.loja.dto.InfoPedidoDTO;
+import br.com.loja.dto.ResponseStatus;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
 
 @Service
+@Slf4j
 public class CompraService {
-
-
-    @Autowired
-    private RestTemplate restTemplate;
 
     @Autowired
     private DiscoveryClient eurekaClient;
+    @Autowired
+    private FornecedorClient fornecedorClient;
 
 
+    @HystrixCommand(fallbackMethod = "informacoesdoFornecedores",threadPoolKey = "threadPoolCompraKey")
+    public void informacoesFornecedor(CompraDTO compraDTO) {
 
-    public void realizaCompra(CompraDTO compraDTO) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            String json = objectMapper.writeValueAsString(fornecedorClient.getInfoPorEstado(compraDTO.getEndereco().getEstado()));
+            log.info(json);
+        } catch (JsonProcessingException e) {
+            log.info("exception during conversion json  " + e.getMessage());
+        }
 
-        String estado = compraDTO.getEndereco().getEstado();
-        ResponseEntity<InfoFornecedorDTO> exchange = restTemplate.
-                exchange("http://fornecedor/info/" + estado,
-                        HttpMethod.GET, null, InfoFornecedorDTO.class);
+    }
 
-        System.out.println(exchange.getBody());
+    public ResponseStatus informacoesdoFornecedores() {
+        CompraDTO compraDTO = new CompraDTO();
+        compraDTO.setResponseStatus(new ResponseStatus("Problem to send Information",
+                HttpStatus.BAD_REQUEST, "error no envio "));
 
-        //to verify how many instances you have 
-        eurekaClient.getInstances("fornecedor").forEach(si -> {
+        return compraDTO.getResponseStatus();
 
-            System.out.println("Host : "+si.getHost() +" Port: "+ si.getPort() + " Instance Id "+ si.getInstanceId());
-        });
 
+    }
+
+    public void realizaPedido(ItensPedidoDTO itensPedidoDTO) {
+
+        InfoPedidoDTO info = fornecedorClient.realizarPedido(Arrays.asList(itensPedidoDTO));
+        log.info("info pedido  " + info);
     }
 }

@@ -9,19 +9,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/compra")
+@RequestMapping("/fornecedor")
 public class CompraController {
 
 
     @Autowired
     private CompraService compraService;
 
+    @PostMapping("/informacoes")
+    public void informacoesFornecedor(@RequestBody CompraDTO compraDTO){
 
-
-    @PostMapping
-    public void enviaCompra(@RequestBody CompraDTO compraDTO){
-
-        compraService.realizaCompra(compraDTO);
+        compraService.informacoesFornecedor(compraDTO);
     }
+
+    @PostMapping("/pedido")
+    public void realizaPedido(@RequestBody CompraDTO compraDTO){
+
+        compraService.realizaPedido(null);
+    }
+
 
 }
