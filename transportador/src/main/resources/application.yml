@@ -1,4 +1,8 @@
 
+spring:
+  application:
+    name: 'transportador'
+
 server:
   port: 8083
 
